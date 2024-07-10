@@ -1,10 +1,8 @@
-# pythonfraudprevention
-
 # e-Commerce Fradulent Transaction Prediction
 
 ## Table of contents
-- Abstract & Background
-- Dataset analysis
+- [Abstract & Background](## Dataset Analysis)
+- [Dataset analysis]
 - Preparation before model training
 
 ## Abstract & Background
