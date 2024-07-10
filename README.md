@@ -29,3 +29,11 @@ Identify Categorical variables
 Convert categorical variables to numerical format for machine learning
 
 
+## Model Training
+
+After preparing the data, the next step is to train a machine learning model to predict fraudulent transactions.
+
+### Import Necessary Libraries
+
+### Split the Data into Training and Testing Sets
+
