@@ -1,9 +1,9 @@
 # e-Commerce Fradulent Transaction Prediction
 
-## Table of contents
-- [Abstract & Background](## Dataset Analysis)
-- [Dataset analysis]
-- Preparation before model training
+## Table of Contents
+- [Abstract & Background](#abstract--background)
+- [Dataset Analysis](#dataset-analysis)
+- [Preparation Before Model Training](#preparation-before-model-training)
 
 ## Abstract & Background
 This project aims to train a predictive model for identifying fraudulent transactions in e-commerce platforms. With the rapid growth of e-Commerce, online fraud has become a significant challenge to both businesses and customers, causing financial losses to both parties.
