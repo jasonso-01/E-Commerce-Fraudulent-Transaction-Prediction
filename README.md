@@ -4,6 +4,7 @@
 - [Abstract & Background](#abstract--background)
 - [Dataset Analysis](#dataset-analysis)
 - [Preparation Before Model Training](#preparation-before-model-training)
+- [Model Training](#model-training)
 
 ## Abstract & Background
 This project aims to train a predictive model for identifying fraudulent transactions in e-commerce platforms. With the rapid growth of e-Commerce, online fraud has become a significant challenge to both businesses and customers, causing financial losses to both parties.
@@ -33,7 +34,8 @@ Convert categorical variables to numerical format for machine learning
 
 After preparing the data, the next step is to train a machine learning model to predict fraudulent transactions.
 
-### Import Necessary Libraries
+Import Necessary Libraries
 
-### Split the Data into Training and Testing Sets
+Split the Data into Training and Testing Sets
 
+Training: Logistic Regression Model
