@@ -138,6 +138,21 @@ plt.show()
 ![download](https://github.com/user-attachments/assets/38029290-ee58-402f-896b-dfb4106c2bcd)
 
 Fradulent / Non Fraudulent ratio
+
+```python
+# Bar chart for Fraudulent & Non-Fraudulent Transactions
+plt.figure(figsize=(8, 6))
+sns.countplot(data=df, x='Is Fraudulent')
+plt.title('Fraudulent vs. Non-Fraudulent Transactions')
+plt.xlabel('Is Fraudulent')
+plt.ylabel('Count')
+plt.xticks([0, 1], ['Non-Fraudulent', 'Fraudulent'])
+plt.show()
+```
+**Output:**
+![download](https://github.com/user-attachments/assets/3e1d9496-84d8-431e-b892-df48aada9207)
+
+
 Distribution of Payment method
 
 ```python
@@ -149,19 +164,208 @@ plt.ylabel('')
 plt.show()
 ```
 **Output:**
-```
 ![download](https://github.com/user-attachments/assets/a94af446-12e3-4ed4-904d-34afdf7641a6)
+
+Distribution of Product Categories
+```python
+# Pie chart for Product Categories
+plt.figure(figsize=(8, 8))
+df['Product Category'].value_counts().plot.pie(autopct='%1.1f%%', startangle=140)
+plt.title('Proportion of Product Categories')
+plt.ylabel('')
+plt.show()
 ```
-
-
+**Output:**
+![download](https://github.com/user-attachments/assets/726e7244-4dda-4a9a-ab1c-5588fc682e5b)
 
 
 ## Preparation before model training
 
-Check for missing values in the dataset
+Check for missing values in the dataset befor the model training process. 
+```python
+# Check for missing values
+print("\nMissing values in the dataset:")
+print(df.isnull().sum())
+```
+**Output:**
+```
+Missing values in the dataset:
+Transaction ID        0
+Customer ID           0
+Transaction Amount    0
+Transaction Date      0
+Payment Method        0
+Product Category      0
+Quantity              0
+Customer Age          0
+Customer Location     0
+Device Used           0
+IP Address            0
+Shipping Address      0
+Billing Address       0
+Is Fraudulent         0
+Account Age Days      0
+Transaction Hour      0
+dtype: int64
+```
+The results shows there are no missing values.
+
+Data cleanup
+The next step is to drop unnecessary data. For example, Transaction ID and Customer ID are not relevant for the ML analysis for whether this transaction is fraudulent or not, so we can drop this data. Also, I extracted data from Transaction date then drop the original "Transaction date" feature.
+
+```python
+# Create new features from 'Transaction Date' 
+df['Transaction Date'] = pd.to_datetime(df['Transaction Date'])
+df['Transaction Year'] = df['Transaction Date'].dt.year
+df['Transaction Month'] = df['Transaction Date'].dt.month
+df['Transaction Day'] = df['Transaction Date'].dt.day
+df['Transaction Hour'] = df['Transaction Date'].dt.hour  # Redundant if already present
+df['Transaction Minute'] = df['Transaction Date'].dt.minute
+df['Transaction Second'] = df['Transaction Date'].dt.second
+
+# Drop the original 'Transaction Date' as we have extracted its components
+df = df.drop(['Transaction Date'], axis=1)
+
+# Drop 'Transaction ID' and 'Customer ID' if they are not relevant for your analysis
+df = df.drop(['Transaction ID', 'Customer ID'], axis=1)
+
+# Display the first few rows of the modified dataset
+print("First few rows of the modified dataset:")
+print(df.head())
+
+# Display the columns of the modified dataset
+print("\nColumns of the modified dataset:")
+print(df.columns)
+```
+
+**Output:**
+```
+First few rows of the modified dataset:
+   Transaction Amount Payment Method Product Category  Quantity  Customer Age  \
+0               42.32         PayPal      electronics         1            40   
+1              301.34    credit card      electronics         3            35   
+2              340.32     debit card     toys & games         5            29   
+3               95.77    credit card      electronics         5            45   
+4               77.45    credit card         clothing         5            42   
+
+     Customer Location Device Used       IP Address  \
+0      East Jameshaven     desktop    110.87.246.85   
+1             Kingstad      tablet    14.73.104.153   
+2           North Ryan     desktop      67.58.94.93   
+3           Kaylaville      mobile  202.122.126.216   
+4  North Edwardborough     desktop     96.77.232.76   
+
+                                    Shipping Address  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853   
+2                195 Cole Oval\nPort Larry, IA 58422   
+3         7609 Cynthia Square\nWest Brenda, NV 23016   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...   
+
+                                     Billing Address  Is Fraudulent  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...              0   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853              0   
+2  4772 David Stravenue Apt. 447\nVelasquezside, ...              0   
+3         7609 Cynthia Square\nWest Brenda, NV 23016              0   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...              0   
+
+   Account Age Days  Transaction Hour  Transaction Year  Transaction Month  \
+0               282                23              2024                  3   
+1               223                 0              2024                  1   
+2               360                 8              2024                  1   
+3               325                20              2024                  1   
+4               116                15              2024                  1   
+
+   Transaction Day  Transaction Minute  Transaction Second  
+0               24                  42                  43  
+1               22                  53                  31  
+2               22                   6                   3  
+3               16                  34                  53  
+4               16                  47                  23  
+
+Columns of the modified dataset:
+Index(['Transaction Amount', 'Payment Method', 'Product Category', 'Quantity',
+       'Customer Age', 'Customer Location', 'Device Used', 'IP Address',
+       'Shipping Address', 'Billing Address', 'Is Fraudulent',
+       'Account Age Days', 'Transaction Hour', 'Transaction Year',
+       'Transaction Month', 'Transaction Day', 'Transaction Minute',
+       'Transaction Second'],
+      dtype='object')
+```
+
 Identify Categorical variables
+Since ML algorithms requires numerical input (int, float) to perform calculations, Categorial variables need to be converted to numerical to be used in ML computations.
+
+```python
+# Check which feature is categorical feature
+categorical = df.select_dtypes(include=['object']).columns.tolist()
+categorical
+```
+**Output:**
+```
+['Payment Method',
+ 'Product Category',
+ 'Customer Location',
+ 'Device Used',
+ 'IP Address',
+ 'Shipping Address',
+ 'Billing Address']
+```
+
 Convert categorical variables to numerical format for machine learning
 
+```python
+# Apply mappings
+df['Payment Method'] = df['Payment Method'].map({"debit card": 0, "credit card": 1, "PayPal": 2, "bank transfer": 3})
+df['Product Category'] = df['Product Category'].map({"home & garden": 0, "electronics": 1, "toys & games": 2, "clothing": 3, "health & beauty": 4})
+df['Device Used'] = df['Device Used'].map({"desktop": 0, "mobile": 1, "tablet": 2})
+
+print(df.head())
+```
+**Output:**
+```
+   Transaction Amount  Payment Method  Product Category  Quantity  \
+0               42.32               2                 1         1   
+1              301.34               1                 1         3   
+2              340.32               0                 2         5   
+3               95.77               1                 1         5   
+4               77.45               1                 3         5   
+
+   Customer Age    Customer Location  Device Used       IP Address  \
+0            40      East Jameshaven            0    110.87.246.85   
+1            35             Kingstad            2    14.73.104.153   
+2            29           North Ryan            0      67.58.94.93   
+3            45           Kaylaville            1  202.122.126.216   
+4            42  North Edwardborough            0     96.77.232.76   
+
+                                    Shipping Address  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853   
+2                195 Cole Oval\nPort Larry, IA 58422   
+3         7609 Cynthia Square\nWest Brenda, NV 23016   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...   
+
+                                     Billing Address  Is Fraudulent  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...              0   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853              0   
+2  4772 David Stravenue Apt. 447\nVelasquezside, ...              0   
+3         7609 Cynthia Square\nWest Brenda, NV 23016              0   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...              0   
+
+   Account Age Days  Transaction Hour  Transaction Year  Transaction Month  \
+0               282                23              2024                  3   
+1               223                 0              2024                  1   
+2               360                 8              2024                  1   
+3               325                20              2024                  1   
+4               116                15              2024                  1   
+
+   Transaction Day  Transaction Minute  Transaction Second  
+0               24                  42                  43  
+1               22                  53                  31  
+2               22                   6                   3  
+3               16                  34                  53  
+4               16                  47                  23  
+```
 
 ## Model Training
 
@@ -184,7 +388,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 ### 2. Split the Data into Training and Testing Sets
 
-Split the data into training and testing sets to evaluate the model's performance. This step was already performed in the previous section, but here is a summary:
+Split the data into training and testing sets to evaluate the model's performance.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -270,7 +474,7 @@ weighted avg       0.95      0.95      0.95      4727
 
 ### Interpretation
 
-- **Accuracy:** The model achieved an accuracy of approximately 95.24%, which indicates that it correctly identified fraudulent transactions 95.24% of the time.
+The model achieved an accuracy of approximately 95.24%, which indicates that it correctly identified fraudulent transactions 95.24% of the time.
 
 ## Model Evaluation - Random Forest
 
