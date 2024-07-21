@@ -629,29 +629,6 @@ The best parameters for the Logistic Regression model were found to be `{'C': 0.
 
 These results indicates that both optimized Logistic Regression and Random Forest models perform similarly well on this dataset.
 
-### Cross-Validation and Model Performance
-
-To evaluate the robustness of this model, I performed 5-fold cross-validation. The `cross_val_score` function from `sklearn.model_selection` was used to achieve this.
-
-```python
-from sklearn.model_selection import cross_val_score
-
-# Perform 5-fold cross-validation
-cv_scores = cross_val_score(best_model, X_train_scaled, y_train, cv=5)
-
-# Print the cross-validation scores and their mean
-print("Cross-validation scores:", cv_scores)
-print("Mean cross-validation score:", np.mean(cv_scores))
-```
-
-The cross-validation scores are as follows:
-
-```
-Cross-validation scores: [0.95346378 0.95478583 0.95292251 0.95292251 0.95292251]
-Mean cross-validation score: 0.9534034250480154
-```
-
-These scores indicate that our model is consistently performing well across different subsets of the training data, with a mean accuracy of approximately 95.34%.
 
 
 
