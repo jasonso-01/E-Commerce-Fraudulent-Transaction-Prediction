@@ -9,7 +9,7 @@
 ## Abstract & Background
 This project aims to train a predictive model for identifying fraudulent transactions in e-commerce platforms. With the rapid growth of e-Commerce, online fraud has become a significant challenge to both businesses and customers, causing financial losses to both parties.
 
-By analyzing the dataset "Fraudulent E-Commerce Transaction" using Python and Jupyter Notebook with ML libraries such as pandas and scikit-learn, I have built and trained a machine learning model to predict fraudulent transactions. The insights and information extracted in this project can be used in real-time fraud detection systems, which contribute to safer online transactions.
+By analyzing the dataset ["Fraudulent E-Commerce Transaction"](https://www.kaggle.com/datasets/shriyashjagtap/fraudulent-e-commerce-transactions) using Python and Jupyter Notebook with ML libraries such as pandas and scikit-learn, I have built and trained a machine learning model to predict fraudulent transactions. The information extracted in this project can be used in real-time fraud detection systems, which contribute to safer online transactions.
 
 ## Dataset Analysis
 
@@ -17,7 +17,66 @@ Getting general info about the dataset:
 
 Displaying the first 5 rows of the dataset to understand the data type and formatting of each column
 
+```python
+# Import libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+df = pd.read_csv('Fraudulent_E-Commerce_Transaction_Data.csv')
+
+# Display the first few rows of the dataset
+print(df.head())
+```
+
+Results:
+```python
+                         Transaction ID                           Customer ID  \
+0  c12e07a0-8a06-4c0d-b5cc-04f3af688570  8ca9f102-02a4-4207-ab63-484e83a1bdf0   
+1  7d187603-7961-4fce-9827-9698e2b6a201  4d158416-caae-4b09-bd5b-15235deb9129   
+2  f2c14f9d-92df-4aaf-8931-ceaf4e63ed72  ccae47b8-75c7-4f5a-aa9e-957deced2137   
+3  e9949bfa-194d-486b-84da-9565fca9e5ce  b04960c0-aeee-4907-b1cd-4819016adcef   
+4  7362837c-7538-434e-8731-0df713f5f26d  de9d6351-b3a7-4bc7-9a55-8f013eb66928   
+
+   Transaction Amount     Transaction Date Payment Method Product Category  \
+0               42.32  2024-03-24 23:42:43         PayPal      electronics   
+1              301.34  2024-01-22 00:53:31    credit card      electronics   
+2              340.32  2024-01-22 08:06:03     debit card     toys & games   
+3               95.77  2024-01-16 20:34:53    credit card      electronics   
+4               77.45  2024-01-16 15:47:23    credit card         clothing   
+
+   Quantity  Customer Age    Customer Location Device Used       IP Address  \
+0         1            40      East Jameshaven     desktop    110.87.246.85   
+1         3            35             Kingstad      tablet    14.73.104.153   
+2         5            29           North Ryan     desktop      67.58.94.93   
+3         5            45           Kaylaville      mobile  202.122.126.216   
+4         5            42  North Edwardborough     desktop     96.77.232.76   
+
+                                    Shipping Address  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853   
+2                195 Cole Oval\nPort Larry, IA 58422   
+3         7609 Cynthia Square\nWest Brenda, NV 23016   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...   
+
+                                     Billing Address  Is Fraudulent  \
+0  5399 Rachel Stravenue Suite 718\nNorth Blakebu...              0   
+1        5230 Stephanie Forge\nCollinsbury, PR 81853              0   
+2  4772 David Stravenue Apt. 447\nVelasquezside, ...              0   
+3         7609 Cynthia Square\nWest Brenda, NV 23016              0   
+4  2494 Robert Ramp Suite 313\nRobinsonport, AS 5...              0   
+
+   Account Age Days  Transaction Hour  
+0               282                23  
+1               223                 0  
+2               360                 8  
+3               325                20  
+4               116                15
+```
+
 Distribution of Transaction amount
+
 Distribution of age
 Distribution of device type
 Fradulent / Non Fraudulent ratio
