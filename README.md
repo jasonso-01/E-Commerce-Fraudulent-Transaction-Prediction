@@ -4,7 +4,9 @@
 - [Abstract & Background](#abstract--background)
 - [Dataset Analysis](#dataset-analysis)
 - [Preparation Before Model Training](#preparation-before-model-training)
-- [Model Training](#model-training)
+  - [Model Training: Random Forest](#Model-Training:-Random-Forest)
+  - [Model Training: Random Forest](#Model-Training:-Random-Forest)
+
 
 ## Abstract & Background
 This project aims to train a predictive model for identifying fraudulent transactions in e-commerce platforms. With the rapid growth of e-Commerce, online fraud has become a significant challenge to both businesses and customers, causing financial losses to both parties.
@@ -185,6 +187,7 @@ plt.show()
 ```
 
 **Output:**  
+
 ![download](https://github.com/user-attachments/assets/726e7244-4dda-4a9a-ab1c-5588fc682e5b)
 
 
