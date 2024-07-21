@@ -13,10 +13,9 @@ By analyzing the dataset ["Fraudulent E-Commerce Transaction"](https://www.kaggl
 
 ## Dataset Analysis
 
-The first step is to get general info about the dataset:
+The first step is to get general info about the dataset.
 
-Displaying the first 5 rows of the dataset to understand the data type and formatting of each column
-
+**Displaying the first 5 rows of the dataset to understand the data type and formatting of each column:**
 ```python
 # Import libraries
 import pandas as pd
@@ -75,14 +74,15 @@ print(df.head())
 4               116                15
 ```
 
-Summary of the dataset:
 
+**Summary of the dataset:**
 ```python
 # Get a summary of the DataFrame
 print("\nInfo about the dataset:")
 print(df.info())
 ```
 
+**Output:**
 ```
 Info about the dataset:
 <class 'pandas.core.frame.DataFrame'>
@@ -111,19 +111,19 @@ memory usage: 2.9+ MB
 None
 ```
 
-Visualization of the first 100 rows of the dataset using pairplot
-
+**Visualization of the first 100 rows of the dataset using pairplot**
 ```python
 # Visualize the first 100 rows of the dataset
 sns.pairplot(df.head(150))
 plt.show()
 ```
 
-**Output:**
+**Output:**  
+
 ![download](https://github.com/user-attachments/assets/80278d4f-6c3f-482f-9124-7ef4197397a8)
 
 
-Distribution of Transaction amount
+**Distribution of Transaction amount**
 
 ```python
 # Transaction Amount
@@ -134,10 +134,12 @@ plt.xlabel('Transaction Amount')
 plt.ylabel('Frequency')
 plt.show()
 ```
-**Output:**
+**Output:**  
+
 ![download](https://github.com/user-attachments/assets/38029290-ee58-402f-896b-dfb4106c2bcd)
 
-Fradulent / Non Fraudulent ratio
+
+**Fradulent / Non Fraudulent ratio**
 
 ```python
 # Bar chart for Fraudulent & Non-Fraudulent Transactions
@@ -149,11 +151,13 @@ plt.ylabel('Count')
 plt.xticks([0, 1], ['Non-Fraudulent', 'Fraudulent'])
 plt.show()
 ```
-**Output:**
+
+**Output:**  
+
 ![download](https://github.com/user-attachments/assets/3e1d9496-84d8-431e-b892-df48aada9207)
 
 
-Distribution of Payment method
+**Distribution of Payment method**
 
 ```python
 # Pie chart for Payment Methods
@@ -163,10 +167,14 @@ plt.title('Proportion of Payment Methods')
 plt.ylabel('')
 plt.show()
 ```
-**Output:**
+
+**Output:**  
+
 ![download](https://github.com/user-attachments/assets/a94af446-12e3-4ed4-904d-34afdf7641a6)
 
-Distribution of Product Categories
+
+**Distribution of Product Categories**
+
 ```python
 # Pie chart for Product Categories
 plt.figure(figsize=(8, 8))
@@ -175,13 +183,14 @@ plt.title('Proportion of Product Categories')
 plt.ylabel('')
 plt.show()
 ```
+
 **Output:**
 ![download](https://github.com/user-attachments/assets/726e7244-4dda-4a9a-ab1c-5588fc682e5b)
 
 
 ## Preparation before model training
 
-Check for missing values in the dataset befor the model training process. 
+### 1. Check for missing values in the dataset befor the model training process. 
 ```python
 # Check for missing values
 print("\nMissing values in the dataset:")
@@ -210,7 +219,7 @@ dtype: int64
 ```
 The results shows there are no missing values.
 
-Data cleanup
+### 2. Data cleanup
 The next step is to drop unnecessary data. For example, Transaction ID and Customer ID are not relevant for the ML analysis for whether this transaction is fraudulent or not, so we can drop this data. Also, I extracted data from Transaction date then drop the original "Transaction date" feature.
 
 ```python
@@ -293,7 +302,7 @@ Index(['Transaction Amount', 'Payment Method', 'Product Category', 'Quantity',
       dtype='object')
 ```
 
-Identify Categorical variables
+### 3. Identify Categorical variables
 Since ML algorithms requires numerical input (int, float) to perform calculations, Categorial variables need to be converted to numerical to be used in ML computations.
 
 ```python
@@ -312,7 +321,7 @@ categorical
  'Billing Address']
 ```
 
-Convert categorical variables to numerical format for machine learning
+### 4. Convert categorical variables to numerical format for machine learning
 
 ```python
 # Apply mappings
@@ -367,13 +376,8 @@ print(df.head())
 4               16                  47                  23  
 ```
 
-## Model Training
 
-After preparing the data, the next step is to train a machine learning model to predict fraudulent transactions.
-
-Here's the next part of the project report focusing on model training:
-
-## Model Training
+## Model Training: Logistic Regression
 
 After preparing the data, the next step is to train a machine learning model to predict fraudulent transactions. Here is the detailed process:
 
@@ -385,6 +389,7 @@ First, import the necessary libraries for model training and evaluation.
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 ```
+
 
 ### 2. Split the Data into Training and Testing Sets
 
@@ -476,7 +481,8 @@ weighted avg       0.95      0.95      0.95      4727
 
 The model achieved an accuracy of approximately 95.24%, which indicates that it correctly identified fraudulent transactions 95.24% of the time.
 
-## Model Evaluation - Random Forest
+
+## Model Training: Random Forest
 
 After training a basic model, the next step is to find the best hyperparameters and comparing it with another model, such as a Random Forest Classifier.
 
@@ -581,7 +587,8 @@ Feature: Transaction Minute, Importance: 0.018051869069402685
 Feature: Transaction Second, Importance: 0.007340263807810822
 ```
 
-Feature importance in a bar chart:
+
+**Feature importance in a bar chart:**
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -604,6 +611,11 @@ plt.xlabel('Importance')
 plt.ylabel('Feature')
 plt.show()
 ```
+
+**Output:**  
+
+![download](https://github.com/user-attachments/assets/558c07a3-9b07-474a-90a8-fd2bfe3ccd3f)
+
 
 ### Results and Interpretation
 
@@ -634,5 +646,6 @@ Mean cross-validation score: 0.9534034250480154
 ```
 
 These scores indicate that our model is consistently performing well across different subsets of the training data, with a mean accuracy of approximately 95.34%.
+
 
 
