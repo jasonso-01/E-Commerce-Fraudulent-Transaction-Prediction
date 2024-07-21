@@ -8,6 +8,7 @@
 - [Preparation Before Model Training](#preparation-before-model-training)
   - [Model Training: Logistic Regression](#Model-Training-Logistic-Regression)
   - [Model Training: Random Forest](#Model-Training-Random-Forest)
+- [Results and Interpretation](#Results-and-Interpretation)
 
 
 ## Abstract & Background
@@ -556,7 +557,9 @@ print("Random Forest Accuracy: ", accuracy_rf)
 Random Forest Accuracy: 0.9521626507298498
 ```
 
-### 3. Feature Importance
+## Results and Interpretation
+
+### Feature Importance: Logistic Regression
 
 Determine the importance of each feature in predicting fraudulent transactions. For the Logistic Regression model, this can be done by examining the coefficients.
 
@@ -594,7 +597,7 @@ Feature: Transaction Second, Importance: 0.007340263807810822
 ```
 
 
-**Feature importance in a bar chart:**
+### Feature Importance: Random Forest
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -622,8 +625,6 @@ plt.show()
 
 ![download](https://github.com/user-attachments/assets/558c07a3-9b07-474a-90a8-fd2bfe3ccd3f)
 
-
-### Results and Interpretation
 
 The best parameters for the Logistic Regression model were found to be `{'C': 0.1, 'solver': 'liblinear'}`. Both the optimized Logistic Regression model and the Random Forest Classifier achieved an accuracy of approximately 95.22%. The most important features for predicting fraudulent transactions included `Transaction Amount`, `Account Age Days`, and `Shipping Address`.
 
