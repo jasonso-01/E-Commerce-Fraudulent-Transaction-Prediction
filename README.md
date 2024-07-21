@@ -241,7 +241,7 @@ df['Transaction Second'] = df['Transaction Date'].dt.second
 # Drop the original 'Transaction Date' as we have extracted its components
 df = df.drop(['Transaction Date'], axis=1)
 
-# Drop 'Transaction ID' and 'Customer ID' if they are not relevant for your analysis
+# Drop 'Transaction ID' and 'Customer ID' if they are not relevant
 df = df.drop(['Transaction ID', 'Customer ID'], axis=1)
 
 # Display the first few rows of the modified dataset
