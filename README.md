@@ -13,7 +13,7 @@ By analyzing the dataset ["Fraudulent E-Commerce Transaction"](https://www.kaggl
 
 ## Dataset Analysis
 
-Getting general info about the dataset:
+The first step is to get general info about the dataset:
 
 Displaying the first 5 rows of the dataset to understand the data type and formatting of each column
 
@@ -30,8 +30,8 @@ df = pd.read_csv('Fraudulent_E-Commerce_Transaction_Data.csv')
 print(df.head())
 ```
 
-Results:
-```python
+**Output:**
+```
                          Transaction ID                           Customer ID  \
 0  c12e07a0-8a06-4c0d-b5cc-04f3af688570  8ca9f102-02a4-4207-ab63-484e83a1bdf0   
 1  7d187603-7961-4fce-9827-9698e2b6a201  4d158416-caae-4b09-bd5b-15235deb9129   
@@ -75,12 +75,86 @@ Results:
 4               116                15
 ```
 
+Summary of the dataset:
+
+```python
+# Get a summary of the DataFrame
+print("\nInfo about the dataset:")
+print(df.info())
+```
+
+```
+Info about the dataset:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 23634 entries, 0 to 23633
+Data columns (total 16 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   Transaction ID      23634 non-null  object 
+ 1   Customer ID         23634 non-null  object 
+ 2   Transaction Amount  23634 non-null  float64
+ 3   Transaction Date    23634 non-null  object 
+ 4   Payment Method      23634 non-null  object 
+ 5   Product Category    23634 non-null  object 
+ 6   Quantity            23634 non-null  int64  
+ 7   Customer Age        23634 non-null  int64  
+ 8   Customer Location   23634 non-null  object 
+ 9   Device Used         23634 non-null  object 
+ 10  IP Address          23634 non-null  object 
+ 11  Shipping Address    23634 non-null  object 
+ 12  Billing Address     23634 non-null  object 
+ 13  Is Fraudulent       23634 non-null  int64  
+ 14  Account Age Days    23634 non-null  int64  
+ 15  Transaction Hour    23634 non-null  int64  
+dtypes: float64(1), int64(5), object(10)
+memory usage: 2.9+ MB
+None
+```
+
+Visualization of the first 100 rows of the dataset using pairplot
+
+```python
+# Visualize the first 100 rows of the dataset
+sns.pairplot(df.head(150))
+plt.show()
+```
+
+**Output:**
+![download](https://github.com/user-attachments/assets/80278d4f-6c3f-482f-9124-7ef4197397a8)
+
+
 Distribution of Transaction amount
 
-Distribution of age
-Distribution of device type
+```python
+# Transaction Amount
+plt.figure(figsize=(10, 6))
+sns.histplot(df['Transaction Amount'], bins=30, kde=True)
+plt.title('Distribution of Transaction Amounts')
+plt.xlabel('Transaction Amount')
+plt.ylabel('Frequency')
+plt.show()
+```
+**Output:**
+![download](https://github.com/user-attachments/assets/38029290-ee58-402f-896b-dfb4106c2bcd)
+
 Fradulent / Non Fraudulent ratio
-Districution of Payment method
+Distribution of Payment method
+
+```python
+# Pie chart for Payment Methods
+plt.figure(figsize=(8, 8))
+df['Payment Method'].value_counts().plot.pie(autopct='%1.1f%%', startangle=140)
+plt.title('Proportion of Payment Methods')
+plt.ylabel('')
+plt.show()
+```
+**Output:**
+```
+![download](https://github.com/user-attachments/assets/a94af446-12e3-4ed4-904d-34afdf7641a6)
+```
+
+
+
 
 ## Preparation before model training
 
