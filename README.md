@@ -1,4 +1,4 @@
-# e-Commerce Fradulent Transaction Prediction
+![image](https://github.com/user-attachments/assets/04ee39a8-cbd4-4e20-bace-7c5e0c817f93)# e-Commerce Fraudulent Transaction Prediction
 
 ## Table of Contents
 - [Abstract & Background](#abstract--background)
@@ -139,7 +139,7 @@ weighted avg       0.95      0.95      0.95      4727
 
 - **Accuracy:** The model achieved an accuracy of approximately 95.24%, which indicates that it correctly identified fraudulent transactions 95.24% of the time.
 
-## Model Evaluation
+## Model Evaluation - Random Forest
 
 After training a basic model, the next step is to find the best hyperparameters and comparing it with another model, such as a Random Forest Classifier.
 
@@ -183,7 +183,7 @@ Best Model Accuracy: 0.9521626507298498
 
 ### 2. Random Forest Classifier
 
-To compare the performance, train a Random Forest Classifier and evaluate its accuracy.
+Train a Random Forest Classifier and evaluate its accuracy.
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -244,6 +244,30 @@ Feature: Transaction Minute, Importance: 0.018051869069402685
 Feature: Transaction Second, Importance: 0.007340263807810822
 ```
 
+Feature importance in a bar chart:
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Train a Random Forest model
+rf_model = RandomForestClassifier()
+rf_model.fit(X_train_scaled, y_train)
+
+# Get feature importance
+feature_importance = rf_model.feature_importances_
+features = X.columns
+
+# Plot feature importance
+plt.figure(figsize=(12, 8))
+sns.barplot(x=feature_importance, y=features)
+plt.title('Feature Importance')
+plt.xlabel('Importance')
+plt.ylabel('Feature')
+plt.show()
+```
+
 ### Results and Interpretation
 
 The best parameters for the Logistic Regression model were found to be `{'C': 0.1, 'solver': 'liblinear'}`. Both the optimized Logistic Regression model and the Random Forest Classifier achieved an accuracy of approximately 95.22%. The most important features for predicting fraudulent transactions included `Transaction Amount`, `Account Age Days`, and `Shipping Address`.
@@ -252,7 +276,7 @@ These results indicates that both optimized Logistic Regression and Random Fores
 
 ### Cross-Validation and Model Performance
 
-To evaluate the robustness and generalizability of our model, we performed 5-fold cross-validation. The `cross_val_score` function from `sklearn.model_selection` was utilized to achieve this. The code snippet and the resulting cross-validation scores are displayed below:
+To evaluate the robustness of this model, I performed 5-fold cross-validation. The `cross_val_score` function from `sklearn.model_selection` was used to achieve this.
 
 ```python
 from sklearn.model_selection import cross_val_score
@@ -273,4 +297,5 @@ Mean cross-validation score: 0.9534034250480154
 ```
 
 These scores indicate that our model is consistently performing well across different subsets of the training data, with a mean accuracy of approximately 95.34%.
+
 
