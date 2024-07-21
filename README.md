@@ -626,7 +626,7 @@ plt.show()
 ![download](https://github.com/user-attachments/assets/558c07a3-9b07-474a-90a8-fd2bfe3ccd3f)
 
 
-The best parameters for the Logistic Regression model were found to be `{'C': 0.1, 'solver': 'liblinear'}`. Both the optimized Logistic Regression model and the Random Forest Classifier achieved an accuracy of approximately 95.22%. The most important features for predicting fraudulent transactions included `Transaction Amount`, `Account Age Days`, and `Shipping Address`.
+Both the optimized Logistic Regression model and the Random Forest Classifier achieved an accuracy of approximately 95.22%. The most important features for predicting fraudulent transactions included `Transaction Amount`, `Account Age Days`.
 
 These results indicates that both optimized Logistic Regression and Random Forest models perform similarly well on this dataset.
 
