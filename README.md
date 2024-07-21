@@ -173,7 +173,7 @@ plt.show()
 ![download](https://github.com/user-attachments/assets/a94af446-12e3-4ed4-904d-34afdf7641a6)
 
 
-**Distribution of Product Categories**
+**Distribution of Product Categories**  
 
 ```python
 # Pie chart for Product Categories
@@ -184,7 +184,7 @@ plt.ylabel('')
 plt.show()
 ```
 
-**Output:**
+**Output:**  
 ![download](https://github.com/user-attachments/assets/726e7244-4dda-4a9a-ab1c-5588fc682e5b)
 
 
@@ -196,7 +196,8 @@ plt.show()
 print("\nMissing values in the dataset:")
 print(df.isnull().sum())
 ```
-**Output:**
+
+**Output:**  
 ```
 Missing values in the dataset:
 Transaction ID        0
@@ -247,7 +248,7 @@ print("\nColumns of the modified dataset:")
 print(df.columns)
 ```
 
-**Output:**
+**Output:**  
 ```
 First few rows of the modified dataset:
    Transaction Amount Payment Method Product Category  Quantity  Customer Age  \
@@ -310,7 +311,7 @@ Since ML algorithms requires numerical input (int, float) to perform calculation
 categorical = df.select_dtypes(include=['object']).columns.tolist()
 categorical
 ```
-**Output:**
+**Output:**  
 ```
 ['Payment Method',
  'Product Category',
@@ -331,7 +332,7 @@ df['Device Used'] = df['Device Used'].map({"desktop": 0, "mobile": 1, "tablet": 
 
 print(df.head())
 ```
-**Output:**
+**Output:**  
 ```
    Transaction Amount  Payment Method  Product Category  Quantity  \
 0               42.32               2                 1         1   
