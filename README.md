@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/04ee39a8-cbd4-4e20-bace-7c5e0c817f93)# e-Commerce Fraudulent Transaction Prediction
+# E-Commerce Fraudulent Transaction Prediction
 
 ## Table of Contents
 - [Abstract & Background](#abstract--background)
