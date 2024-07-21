@@ -274,20 +274,3 @@ Mean cross-validation score: 0.9534034250480154
 
 These scores indicate that our model is consistently performing well across different subsets of the training data, with a mean accuracy of approximately 95.34%.
 
-### Feature Importance Analysis
-
-To understand the impact of each feature on the model's predictions, we employed SHAP (SHapley Additive exPlanations) values. The SHAP summary plot below illustrates the importance of various features, with `Account Age Days` and `Transaction Amount` being the most influential.
-
-![SHAP Summary Plot][]
-
-### Model Performance After ResamplingTo address the class imbalance in our dataset, we applied resampling techniques. The accuracy of the model after resampling is shown below:
-
-```Accuracy after resampling: 0.7036175163951767```
-
-While the accuracy decreased to approximately 70.36%, resampling helps to improve the model's ability to correctly identify minority class instances, thereby enhancing its overall performance on imbalanced data.### Target Variable DistributionThe distribution of the target variable `Is Fraudulent` is depicted in the bar chart below. This visualization confirms the class imbalance, with non-fraudulent transactions significantly outnumbering fraudulent ones.
-
-```pythonimport matplotlib.pyplot as pltimport seaborn as sns# Plot the distribution of the target variableplt.figure(figsize=(6, 4))sns.countplot(x='Is Fraudulent', data=df)plt.title('Distribution of Target Variable')plt.xlabel('Is Fraudulent')plt.ylabel('Count')plt.show()```
-
-![Distribution of Target Variable][]
-
-In conclusion, the model demonstrates strong performance and consistency through cross-validation. The feature importance analysis provides insights into the key factors influencing predictions, and resampling addresses class imbalance, improving the model's capability to detect fraudulent transactions.
