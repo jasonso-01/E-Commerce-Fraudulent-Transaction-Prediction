@@ -1,4 +1,7 @@
-# E-Commerce Fraudulent Transaction Prediction
+# E-Commerce Fraudulent Transaction Prediction  
+
+![ComfyUI_00053_ 拷貝](https://github.com/user-attachments/assets/0b2fa2d3-f739-4d33-a263-742e4fe95422)
+
 
 ## Table of Contents
 - [Abstract & Background](#abstract--background)
