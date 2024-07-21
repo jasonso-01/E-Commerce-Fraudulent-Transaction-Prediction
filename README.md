@@ -1,4 +1,4 @@
-![github_banner](https://github.com/user-attachments/assets/be3565aa-a478-4520-900f-ceba85e4997f)
+![github_banner](https://github.com/user-attachments/assets/e912ea48-9fd2-484e-a533-43a5441b6100)
 
 # E-Commerce Fraudulent Transaction Prediction  
 
