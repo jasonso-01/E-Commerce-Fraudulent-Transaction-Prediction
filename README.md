@@ -235,7 +235,7 @@ df['Transaction Date'] = pd.to_datetime(df['Transaction Date'])
 df['Transaction Year'] = df['Transaction Date'].dt.year
 df['Transaction Month'] = df['Transaction Date'].dt.month
 df['Transaction Day'] = df['Transaction Date'].dt.day
-df['Transaction Hour'] = df['Transaction Date'].dt.hour  # Redundant if already present
+df['Transaction Hour'] = df['Transaction Date'].dt.hour 
 df['Transaction Minute'] = df['Transaction Date'].dt.minute
 df['Transaction Second'] = df['Transaction Date'].dt.second
 
