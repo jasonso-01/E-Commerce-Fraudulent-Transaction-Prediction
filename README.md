@@ -4,8 +4,8 @@
 - [Abstract & Background](#abstract--background)
 - [Dataset Analysis](#dataset-analysis)
 - [Preparation Before Model Training](#preparation-before-model-training)
-  - [Model Training: Random Forest](#Model-Training:-Random-Forest)
-  - [Model Training: Random Forest](#Model-Training:-Random-Forest)
+  - [Model Training: Logistic Regression](#Model-Training-Logistic-Regression)
+  - [Model Training: Random Forest](#Model-Training-Random-Forest)
 
 
 ## Abstract & Background
